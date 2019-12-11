@@ -5,28 +5,30 @@ namespace VirtualPet
 {
     public class Elephant : IRealTimeComponent
     {
-        char[,] sprite = new char[5, 19];
+        char[,] sprite = new char[5, 20];
         string[] lines = File.ReadAllLines("Elephant.txt");
 
-        public int Health { get; set; }
-        public int Mood { get; set; }
-        public int Hunger { get; set; }
+        private int MaxHealth { get; set; }
+        private int MaxMood { get; set; }
+        private int MaxHunger { get; set; }
         public decimal AmbientTemp { get; set; }
 
-        /*
-        public Elephant(string health, string mood, string hunger, decimal ambientTemp)
+        
+        public Elephant(PetType petType, int health, int mood, int hunger, decimal ambientTemp)
         {
-
+            MaxHealth = health;
+            MaxMood = mood;
+            MaxHunger = hunger;
+            AmbientTemp = ambientTemp;
         }
-        */
 
         public void Display()
         {
-            int i = 7;
+            int i = 5;
 
             for (int row = 0; row < sprite.GetLength(0); row++)
             {
-                Console.SetCursorPosition(9, i);
+                Console.SetCursorPosition(15, i);
 
                 for (int column = 0; column < sprite.GetLength(1); column++)
                 {
@@ -49,7 +51,7 @@ namespace VirtualPet
 
         public void Update()
         {
-            throw new NotImplementedException();
+
         }
     }
 }

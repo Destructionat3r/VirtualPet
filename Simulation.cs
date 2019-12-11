@@ -10,7 +10,6 @@ namespace VirtualPet
     public enum AppState
     {
         Running,
-        Help,
         Paused,
         Exiting
     }
@@ -19,8 +18,8 @@ namespace VirtualPet
     {
         //private bool appRunning = true;
         AppState appState = AppState.Running;
-        Counter counter = new Counter(1000);
-        Elephant nelly = new Elephant();
+        Elephant nelly = new Elephant(PetType.Elephant, 100, 100, 100, 19.30m);
+        StatCounter stats = new StatCounter(100, 100, 100, 19.30m);
         Layout layout = new Layout();
 
         public Simulation()
@@ -44,40 +43,21 @@ namespace VirtualPet
                         break;
                     case AppState.Paused:
                         break;
-                    case AppState.Help:
-                        DisplayHelp();
-                        break;
                     default:
                         break;
                 }
-                Thread.Sleep(1000 / 10);
+                Thread.Sleep(500);
             } while (appState != AppState.Exiting);
-            //Environment.Exit(0);
-        }
-
-        public void DisplayHelp()
-        {
-            Console.BackgroundColor = ConsoleColor.Blue;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Clear();
-            Console.WriteLine("Help");
-            Console.WriteLine("\n\nPress Any key to Continue \nHopefully this is helpful");
-            Console.ReadKey(true);
-            appState = AppState.Running;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Clear();
+            Environment.Exit(0);
         }
 
         public void Initialise()
         {
             Console.CursorVisible = false;
-            //Console.SetBufferSize(229, 30);
-            //Console.SetWindowSize(229, 30);
             Console.Clear();
             layout.Initialise();
-            //counter.Initialise();
             nelly.Initialise();
+            stats.Initialise();
         }
 
         public void CheckKeyInput()
@@ -86,29 +66,61 @@ namespace VirtualPet
             {
                 ConsoleKey keyPressed = Console.ReadKey(true).Key;
 
+                if (keyPressed == ConsoleKey.NumPad1 || keyPressed == ConsoleKey.D1)
+                {
+                    if (layout.displayMenu < 3)
+                    { 
+                        if (layout.displayMenu == 1)
+                            layout.choice = "Shop";
+                        layout.displayMenu++;
+                    }
+                }
+
+                if (keyPressed == ConsoleKey.NumPad2 || keyPressed == ConsoleKey.D2)
+                {
+                    if (layout.displayMenu < 3)
+                    {
+                        if (layout.displayMenu == 1)
+                            layout.choice = "Inventory";
+                        layout.displayMenu++;
+                    }
+                }
+
+                if (keyPressed == ConsoleKey.NumPad3 || keyPressed == ConsoleKey.D3)
+                {
+                    if (layout.displayMenu == 3)
+                    {
+
+                    }
+                }
+
                 if (keyPressed == ConsoleKey.Escape)
                 {
-                    appState = AppState.Exiting;
+                    if (layout.displayMenu == 1)
+                    {
+                        appState = AppState.Exiting;
+                    }
+                    else
+                    {
+                        layout.displayMenu--;
+                        if (layout.displayMenu == 1)
+                            layout.choice = "Menu";
+                    }
                 }
 
                 if (keyPressed == ConsoleKey.UpArrow)
                 {
-                    counter.TickSpeed++;
+                    stats.TempControl += 0.05m;
                 }
 
                 if (keyPressed == ConsoleKey.DownArrow)
                 {
-                    counter.TickSpeed--;
+                    stats.TempControl -= 0.05m;
                 }
 
                 if (keyPressed == ConsoleKey.R)
                 {
-                    counter.Initialise();
-                }
-
-                if (keyPressed == ConsoleKey.H)
-                {
-                    appState = AppState.Help;
+                    //counter.Initialise();
                 }
 
                 if (keyPressed == ConsoleKey.P)
@@ -116,10 +128,14 @@ namespace VirtualPet
                     if (appState != AppState.Paused)
                     {
                         appState = AppState.Paused;
+                        Console.SetCursorPosition(20, 11);
+                        Console.WriteLine("PAUSED");
                     }
                     else if (appState == AppState.Paused)
                     {
                         appState = AppState.Running;
+                        Console.SetCursorPosition(20, 11);
+                        Console.WriteLine("      ");
                     }
 
                 }
@@ -128,16 +144,16 @@ namespace VirtualPet
 
         public void Update()
         {
-            //counter.Update();
+            nelly.Update();
+            stats.Update();
         }
 
         public void Display()
         {
-            //Console.Clear();
             Console.SetCursorPosition(0, 0);
             layout.Display();
-            //counter.Display();
             nelly.Display();
+            stats.Display();
         }
     }
 }
