@@ -6,7 +6,9 @@ namespace VirtualPet
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Simulation sim = new Simulation();
+
+            sim.Run();
         }
     }
 }
