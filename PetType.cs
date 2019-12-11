@@ -1,4 +1,4 @@
-namespace PetGame
+namespace VirtualPet
 {
     public enum PetType
     {
