@@ -217,10 +217,6 @@ namespace VirtualPet
                             {
                                 inv.AddItem("Food", layout.pageNo, 3);
                             }
-                            if (layout.page == "Medicine")
-                            {
-                                inv.AddItem("Medicine", layout.pageNo, 3);
-                            }
                             if (layout.page == "Toys")
                             {
                                 inv.AddItem("Toys", layout.pageNo, 3);
@@ -257,10 +253,6 @@ namespace VirtualPet
                             if (layout.page == "Food")
                             {
                                 inv.UseItem("Food", layout.pageNo, 4);
-                            }
-                            if (layout.page == "Medicine")
-                            {
-                                inv.UseItem("Medicine", layout.pageNo, 4);
                             }
                             if (layout.page == "Toys")
                             {

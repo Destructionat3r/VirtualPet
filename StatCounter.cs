@@ -63,8 +63,8 @@ namespace VirtualPet
 
         public void Initialise()
         {
-            CurrentHealth = 10;
-            MaxHealth = 10;
+            CurrentHealth = startHealth;
+            MaxHealth = startHealth;
             CurrentMood = startMood;
             MaxMood = startMood;
             CurrentHunger = startHunger;
@@ -118,6 +118,10 @@ namespace VirtualPet
                 CurrentGold -= price;
                 purchased = true;
             }
+            else
+            {
+                purchased = false;
+            }
 
             return purchased;
         }
@@ -129,11 +133,14 @@ namespace VirtualPet
                 CurrentHunger = MaxHunger;
         }
 
-        public void UseMedicine(int healthGain)
+        public void UseMedicine(int healthGain, int hungerDecrease)
         {
             CurrentHealth += healthGain;
             if (CurrentHealth > MaxHealth)
                 CurrentHealth = MaxHealth;
+            CurrentHunger -= hungerDecrease;
+            if (CurrentHunger < 0)
+                CurrentHunger = 0;
         }
 
         public void PlayWithToy(int moodGain)

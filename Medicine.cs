@@ -9,13 +9,15 @@ namespace VirtualPet
         public string Name { get; set; }
         public int Uses { get; set; }
         public int HealthIncrease { get; set; }
+        public int HungerDecrease { get; set; }
         public int Price { get; set; }
 
-        public Medicine(string name, int uses, int healthIncrease, int price)
+        public Medicine(string name, int uses, int healthIncrease, int hungerDecrease, int price)
         {
             Name = name;
             Uses = uses;
             HealthIncrease = healthIncrease;
+            HungerDecrease = hungerDecrease;
             Price = price;
         }
 
@@ -27,6 +29,8 @@ namespace VirtualPet
             Console.WriteLine($"  Uses: {Uses}");
             Console.SetCursorPosition(54, (counter += 1));
             Console.WriteLine($"  Health increase: {HealthIncrease}");
+            Console.SetCursorPosition(54, (counter += 1));
+            Console.WriteLine($"  Hunger decrease: {HungerDecrease}");
             if (shop == true)
             {
                 Console.SetCursorPosition(54, (counter += 1));

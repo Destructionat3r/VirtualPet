@@ -13,7 +13,7 @@ namespace VirtualPet
         public static int medicinePages;
         public static int toyPages;
         StatCounter stats = new StatCounter();
-        bool purchased = true;
+        static bool purchased = true;
         Food foods = new Food();
 
         public void Display(string page, int pageNo)
@@ -35,33 +35,47 @@ namespace VirtualPet
                     }
                 }
                 Console.SetCursorPosition(53, 24);
-                if (pageNo == 1)
-                    Console.WriteLine($"     Page {pageNo} of {foodPages}    ->");
-                if (pageNo < foodPages && pageNo > 1)
-                    Console.WriteLine($"<-   Page {pageNo} of {foodPages}    ->");
-                if (pageNo == foodPages)
-                    Console.WriteLine($"<-   Page {pageNo} of {foodPages}      ");
+                if (foodPages > 1)
+                {
+                    if (pageNo == 1)
+                        Console.WriteLine($"     Page {pageNo} of {foodPages}    ->");
+                    if (pageNo < foodPages && pageNo > 1)
+                        Console.WriteLine($"<-   Page {pageNo} of {foodPages}    ->");
+                    if (pageNo == foodPages)
+                        Console.WriteLine($"<-   Page {pageNo} of {foodPages}      ");
+                }
+                else
+                {
+                    Console.WriteLine($"     Page {pageNo} of {foodPages}      ");
+                }
             }
             if (page == "Medicine")
             {
-                index = (pageNo - 1) * 5;
-                for (int i = 0; i < 5; i++)
+                index = (pageNo - 1) * 4;
+                for (int i = 0; i < 4; i++)
                 {
                     if (index < invMedicine.Count)
                     {
                         invMedicine[index].Display(number, counter, false);
                         index++;
                         number++;
-                        counter += 4;
+                        counter += 5;
                     }
                 }
                 Console.SetCursorPosition(53, 24);
-                if (pageNo == 1)
-                    Console.WriteLine($"     Page {pageNo} of {medicinePages}    ->");
-                if (pageNo < medicinePages && pageNo > 1)
-                    Console.WriteLine($"<-   Page {pageNo} of {medicinePages}    ->");
-                if (pageNo == medicinePages)
-                    Console.WriteLine($"<-   Page {pageNo} of {medicinePages}      ");
+                if (medicinePages > 1)
+                {
+                    if (pageNo == 1)
+                        Console.WriteLine($"     Page {pageNo} of {medicinePages}    ->");
+                    if (pageNo < medicinePages && pageNo > 1)
+                        Console.WriteLine($"<-   Page {pageNo} of {medicinePages}    ->");
+                    if (pageNo == medicinePages)
+                        Console.WriteLine($"<-   Page {pageNo} of {medicinePages}      ");
+                }
+                else
+                {
+                    Console.WriteLine($"     Page {pageNo} of {medicinePages}      ");
+                }
             }
             if (page == "Toys")
             {
@@ -77,12 +91,19 @@ namespace VirtualPet
                     }
                 }
                 Console.SetCursorPosition(53, 24);
-                if (pageNo == 1)
-                    Console.WriteLine($"     Page {pageNo} of {toyPages}    ->");
-                if (pageNo < toyPages && pageNo > 1)
-                    Console.WriteLine($"<-   Page {pageNo} of {toyPages}    ->");
-                if (pageNo == toyPages)
-                    Console.WriteLine($"<-   Page {pageNo} of {toyPages}      ");
+                if (toyPages > 1)
+                {
+                    if (pageNo == 1)
+                        Console.WriteLine($"     Page {pageNo} of {toyPages}    ->");
+                    if (pageNo < toyPages && pageNo > 1)
+                        Console.WriteLine($"<-   Page {pageNo} of {toyPages}    ->");
+                    if (pageNo == toyPages)
+                        Console.WriteLine($"<-   Page {pageNo} of {toyPages}      ");
+                }
+                else
+                {
+                    Console.WriteLine($"     Page {pageNo} of {toyPages}      ");
+                }
             }
         }
 
@@ -101,7 +122,7 @@ namespace VirtualPet
                 index = (pageNo - 1) * 4 + itemNo;
                 purchased = stats.BuyItem(Shop.shopMedicine[index].Price, purchased);
                 if (purchased == true)
-                    invMedicine.Add(new Medicine(Shop.shopMedicine[index].Name, Shop.shopMedicine[index].Uses, Shop.shopMedicine[index].HealthIncrease, Shop.shopMedicine[index].Price));
+                    invMedicine.Add(new Medicine(Shop.shopMedicine[index].Name, Shop.shopMedicine[index].Uses, Shop.shopMedicine[index].HealthIncrease, Shop.shopMedicine[index].HungerDecrease, Shop.shopMedicine[index].Price));
             }
             if (page == "Toys")
             {
@@ -125,10 +146,10 @@ namespace VirtualPet
             }
             if (page == "Medicine")
             {
-                int index = (pageNo - 1) * 5 + indexHelp;
+                int index = (pageNo - 1) * 4 + indexHelp;
                 if (index < invMedicine.Count)
                 {
-                    stats.UseMedicine(invMedicine[index].HealthIncrease);
+                    stats.UseMedicine(invMedicine[index].HealthIncrease, invMedicine[index].HungerDecrease);
                     invMedicine[index].Uses--;
                     if (invMedicine[index].Uses == 0)
                     {
@@ -141,7 +162,7 @@ namespace VirtualPet
                 int index = (pageNo - 1) * 5 + indexHelp;
                 if (index < invToys.Count)
                 {
-                    stats.UseMedicine(invToys[index].MoodIncrease);
+                    stats.PlayWithToy(invToys[index].MoodIncrease);
                     invToys[index].Uses--;
                     if (invToys[index].Uses == 0)
                     {
@@ -154,7 +175,7 @@ namespace VirtualPet
         public void Update()
         {
             foodPages = stats.UpdateFoodPages(foodPages, invFood.Count, 6);
-            medicinePages = stats.UpdateMedicinePages(medicinePages, invMedicine.Count, 5);
+            medicinePages = stats.UpdateMedicinePages(medicinePages, invMedicine.Count, 4);
             toyPages = stats.UpdateToysPages(toyPages, invToys.Count, 5);
         }
     }

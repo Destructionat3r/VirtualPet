@@ -34,33 +34,47 @@ namespace VirtualPet
                     }
                 }
                 Console.SetCursorPosition(53, 24);
-                if (pageNo == 1)
-                    Console.WriteLine($"     Page {pageNo} of {foodPages}    ->");
-                if (pageNo < foodPages && pageNo > 1)
-                    Console.WriteLine($"<-   Page {pageNo} of {foodPages}    ->");
-                if (pageNo == foodPages)
-                    Console.WriteLine($"<-   Page {pageNo} of {foodPages}      ");
+                if (foodPages > 1)
+                {
+                    if (pageNo == 1)
+                        Console.WriteLine($"     Page {pageNo} of {foodPages}    ->");
+                    if (pageNo < foodPages && pageNo > 1)
+                        Console.WriteLine($"<-   Page {pageNo} of {foodPages}    ->");
+                    if (pageNo == foodPages)
+                        Console.WriteLine($"<-   Page {pageNo} of {foodPages}      ");
+                }
+                else
+                {
+                    Console.WriteLine($"     Page {pageNo} of {foodPages}      ");
+                }
             }
             if (page == "Medicine")
             {
-                index = (pageNo - 1) * 4;
-                for (int i = 0; i < 4; i++)
+                index = (pageNo - 1) * 3;
+                for (int i = 0; i < 3; i++)
                 {
                     if (index < shopMedicine.Count)
                     {
                         shopMedicine[index].Display(number, counter, true);
                         index++;
                         number++;
-                        counter += 5;
+                        counter += 6;
                     }
                 }
                 Console.SetCursorPosition(53, 24);
-                if (pageNo == 1)
-                    Console.WriteLine($"     Page {pageNo} of {medicinePages}    ->");
-                if (pageNo < medicinePages && pageNo > 1)
-                    Console.WriteLine($"<-   Page {pageNo} of {medicinePages}    ->");
-                if (pageNo == medicinePages)
-                    Console.WriteLine($"<-   Page {pageNo} of {medicinePages}      ");
+                if (medicinePages > 1)
+                {
+                    if (pageNo == 1)
+                        Console.WriteLine($"     Page {pageNo} of {medicinePages}    ->");
+                    if (pageNo < medicinePages && pageNo > 1)
+                        Console.WriteLine($"<-   Page {pageNo} of {medicinePages}    ->");
+                    if (pageNo == medicinePages)
+                        Console.WriteLine($"<-   Page {pageNo} of {medicinePages}      ");
+                }
+                else
+                {
+                    Console.WriteLine($"     Page {pageNo} of {medicinePages}      ");
+                }
             }
             if (page == "Toys")
             {
@@ -76,12 +90,19 @@ namespace VirtualPet
                     }
                 }
                 Console.SetCursorPosition(53, 24);
-                if (pageNo == 1)
-                    Console.WriteLine($"     Page {pageNo} of {toyPages}    ->");
-                if (pageNo < toyPages && pageNo > 1)
-                    Console.WriteLine($"<-   Page {pageNo} of {toyPages}    ->");
-                if (pageNo == toyPages)
-                    Console.WriteLine($"<-   Page {pageNo} of {toyPages}      ");
+                if (toyPages > 1)
+                {
+                    if (pageNo == 1)
+                        Console.WriteLine($"     Page {pageNo} of {toyPages}    ->");
+                    if (pageNo < toyPages && pageNo > 1)
+                        Console.WriteLine($"<-   Page {pageNo} of {toyPages}    ->");
+                    if (pageNo == toyPages)
+                        Console.WriteLine($"<-   Page {pageNo} of {toyPages}      ");
+                }
+                else
+                {
+                    Console.WriteLine($"     Page {pageNo} of {toyPages}      ");
+                }
             }
         }
 
@@ -105,7 +126,7 @@ namespace VirtualPet
                 while ((line = sr.ReadLine()) != null)
                 {
                     var parts = line.Split(',');
-                    shopMedicine.Add(new Medicine(parts[0], Convert.ToInt32(parts[1]), Convert.ToInt32(parts[2]), Convert.ToInt32(parts[3])));
+                    shopMedicine.Add(new Medicine(parts[0], Convert.ToInt32(parts[1]), Convert.ToInt32(parts[2]), Convert.ToInt32(parts[3]), Convert.ToInt32(parts[4])));
                 }
             }
 
@@ -124,7 +145,7 @@ namespace VirtualPet
         public void Update()
         {
             foodPages = stats.UpdateFoodPages(foodPages, shopFood.Count, 5);
-            medicinePages = stats.UpdateMedicinePages(medicinePages, shopMedicine.Count, 4);
+            medicinePages = stats.UpdateMedicinePages(medicinePages, shopMedicine.Count, 3);
             toyPages = stats.UpdateToysPages(toyPages, shopToys.Count, 4);
         }
     }
