@@ -8,6 +8,7 @@ namespace VirtualPet
         {
             Simulation sim = new Simulation();
 
+            Console.SetWindowSize(79, 29);
             sim.Run();
         }
     }

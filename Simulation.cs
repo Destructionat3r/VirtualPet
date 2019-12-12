@@ -349,13 +349,13 @@ namespace VirtualPet
                     if (appState != AppState.Paused)
                     {
                         appState = AppState.Paused;
-                        Console.SetCursorPosition(20, 11);
+                        Console.SetCursorPosition(22, 13);
                         Console.WriteLine("PAUSED");
                     }
                     else if (appState == AppState.Paused)
                     {
                         appState = AppState.Running;
-                        Console.SetCursorPosition(20, 11);
+                        Console.SetCursorPosition(22, 13);
                         Console.WriteLine("      ");
                     }
 
