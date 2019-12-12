@@ -6,20 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Elephant.txt" />
+    <None Remove="Dog.txt" />
     <None Remove="Food.txt" />
     <None Remove="Layout.txt" />
+    <None Remove="Medicine.txt" />
     <None Remove="Toys.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Elephant.txt">
+    <Content Include="Dog.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Food.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Layout.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Medicine.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Toys.txt">

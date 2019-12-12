@@ -1,2 +1,3 @@
-Peanuts,25
-Banana,15
+Steak,25,15
+Sausage,15,10
+Dog Food,50,20

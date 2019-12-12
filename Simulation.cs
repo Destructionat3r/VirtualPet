@@ -18,9 +18,11 @@ namespace VirtualPet
     {
         //private bool appRunning = true;
         AppState appState = AppState.Running;
-        Elephant nelly = new Elephant(PetType.Elephant, 100, 100, 100, 19.30m);
+        Dog dog = new Dog(PetType.Dog, 100, 100, 100, 19.30m);
         StatCounter stats = new StatCounter(100, 100, 100, 19.30m);
         Layout layout = new Layout();
+        Shop shop = new Shop();
+        Inventory inv = new Inventory();
 
         public Simulation()
         {
@@ -56,8 +58,9 @@ namespace VirtualPet
             Console.CursorVisible = false;
             Console.Clear();
             layout.Initialise();
-            nelly.Initialise();
+            dog.Initialise();
             stats.Initialise();
+            shop.Initialise();
         }
 
         public void CheckKeyInput()
@@ -68,16 +71,92 @@ namespace VirtualPet
 
                 if (keyPressed == ConsoleKey.NumPad1 || keyPressed == ConsoleKey.D1)
                 {
-                    if (layout.displayMenu < 3)
-                    { 
-                        if (layout.displayMenu == 1)
-                            layout.choice = "Shop";
+                    if (layout.displayMenu == 3)
+                    {
+                        if (layout.choice == "Shop")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.AddItem("Food", layout.pageNo, 0);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.AddItem("Medicine", layout.pageNo, 0);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.AddItem("Toys", layout.pageNo, 0);
+                            }
+                        }
+                        if (layout.choice == "Inventory")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.UseItem("Food", layout.pageNo, 0);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.UseItem("Medicine", layout.pageNo, 0);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.UseItem("Toys", layout.pageNo, 0);
+                            }
+                        }
+                    }
+                    if (layout.displayMenu == 2)
+                    {
+                        layout.page = "Food";
                         layout.displayMenu++;
+                    }
+                    if (layout.displayMenu <= 2)
+                    {
+                        layout.displayMenu++;
+                        if (layout.displayMenu == 2)
+                            layout.choice = "Shop";
                     }
                 }
 
                 if (keyPressed == ConsoleKey.NumPad2 || keyPressed == ConsoleKey.D2)
                 {
+                    if (layout.displayMenu == 3)
+                    {
+                        if (layout.choice == "Shop")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.AddItem("Food", layout.pageNo, 1);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.AddItem("Medicine", layout.pageNo, 1);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.AddItem("Toys", layout.pageNo, 1);
+                            }
+                        }
+                        if (layout.choice == "Inventory")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.UseItem("Food", layout.pageNo, 1);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.UseItem("Medicine", layout.pageNo, 1);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.UseItem("Toys", layout.pageNo, 1);
+                            }
+                        }
+                    }
+                    if (layout.displayMenu == 2)
+                    {
+                        layout.page = "Medicine";
+                        layout.displayMenu++;
+                    }
                     if (layout.displayMenu < 3)
                     {
                         if (layout.displayMenu == 1)
@@ -90,7 +169,115 @@ namespace VirtualPet
                 {
                     if (layout.displayMenu == 3)
                     {
+                        if (layout.choice == "Shop")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.AddItem("Food", layout.pageNo, 2);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.AddItem("Medicine", layout.pageNo, 2);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.AddItem("Toys", layout.pageNo, 2);
+                            }
+                        }
+                        if (layout.choice == "Inventory")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.UseItem("Food", layout.pageNo, 2);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.UseItem("Medicine", layout.pageNo, 2);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.UseItem("Toys", layout.pageNo, 2);
+                            }
+                        }
+                    }
+                    if (layout.displayMenu == 2)
+                    {
+                        layout.page = "Toys";
+                        layout.displayMenu++;
+                    }
+                }
 
+                if (keyPressed == ConsoleKey.NumPad4 || keyPressed == ConsoleKey.D4)
+                {
+                    if (layout.displayMenu == 3)
+                    {
+                        if (layout.choice == "Shop")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.AddItem("Food", layout.pageNo, 3);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.AddItem("Medicine", layout.pageNo, 3);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.AddItem("Toys", layout.pageNo, 3);
+                            }
+                        }
+                        if (layout.choice == "Inventory")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.UseItem("Food", layout.pageNo, 3);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.UseItem("Medicine", layout.pageNo, 3);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.UseItem("Toys", layout.pageNo, 3);
+                            }
+                        }
+                    }
+                }
+
+                if (keyPressed == ConsoleKey.NumPad5 || keyPressed == ConsoleKey.D5)
+                {
+                    if (layout.displayMenu == 3)
+                    {
+                        if (layout.choice == "Shop" && layout.page == "Food")
+                        {
+                            inv.AddItem("Food", layout.pageNo, 4);
+                        }
+                        if (layout.choice == "Inventory")
+                        {
+                            if (layout.page == "Food")
+                            {
+                                inv.UseItem("Food", layout.pageNo, 4);
+                            }
+                            if (layout.page == "Medicine")
+                            {
+                                inv.UseItem("Medicine", layout.pageNo, 4);
+                            }
+                            if (layout.page == "Toys")
+                            {
+                                inv.UseItem("Toys", layout.pageNo, 4);
+                            }
+                        }
+                    }
+                }
+
+                if (keyPressed == ConsoleKey.NumPad6 || keyPressed == ConsoleKey.D6)
+                {
+                    if (layout.displayMenu == 3)
+                    {
+                        if (layout.choice == "Inventory" && layout.page == "Food")
+                        {
+                            inv.UseItem("Food", layout.pageNo, 5);
+                        }
                     }
                 }
 
@@ -103,6 +290,8 @@ namespace VirtualPet
                     else
                     {
                         layout.displayMenu--;
+                        if (layout.displayMenu == 2)
+                            layout.pageNo = 1;
                         if (layout.displayMenu == 1)
                             layout.choice = "Menu";
                     }
@@ -118,9 +307,49 @@ namespace VirtualPet
                     stats.TempControl -= 0.05m;
                 }
 
-                if (keyPressed == ConsoleKey.R)
+                if (keyPressed == ConsoleKey.LeftArrow)
                 {
-                    //counter.Initialise();
+                    if (layout.displayMenu == 3 && layout.pageNo != 1)
+                    {
+                        layout.pageNo--;
+                    }
+                }
+
+                if (keyPressed == ConsoleKey.RightArrow)
+                {
+                    if (layout.displayMenu == 3)
+                    {
+                        if (layout.choice == "Shop")
+                        {
+                            if (layout.page == "Food" && layout.pageNo < Shop.foodPages)
+                            {
+                                layout.pageNo++;
+                            }
+                            if (layout.page == "Medicine" && layout.pageNo < Shop.medicinePages)
+                            {
+                                layout.pageNo++;
+                            }
+                            if (layout.page == "Toys" && layout.pageNo < Shop.toyPages)
+                            {
+                                layout.pageNo++;
+                            }
+                        }
+                        if (layout.choice == "Inventory")
+                        {
+                            if (layout.page == "Food" && layout.pageNo < Inventory.foodPages)
+                            {
+                                layout.pageNo++;
+                            }
+                            if (layout.page == "Medicine" && layout.pageNo < Inventory.medicinePages)
+                            {
+                                layout.pageNo++;
+                            }
+                            if (layout.page == "Toys" && layout.pageNo < Inventory.toyPages)
+                            {
+                                layout.pageNo++;
+                            }
+                        }
+                    }
                 }
 
                 if (keyPressed == ConsoleKey.P)
@@ -144,15 +373,16 @@ namespace VirtualPet
 
         public void Update()
         {
-            nelly.Update();
             stats.Update();
+            inv.Update();
+            shop.Update();
         }
 
         public void Display()
         {
             Console.SetCursorPosition(0, 0);
             layout.Display();
-            nelly.Display();
+            dog.Display();
             stats.Display();
         }
     }

@@ -3,10 +3,10 @@ using System.IO;
 
 namespace VirtualPet
 {
-    public class Elephant : IRealTimeComponent
+    public class Dog : IRealTimeComponent
     {
-        char[,] sprite = new char[5, 20];
-        string[] lines = File.ReadAllLines("Elephant.txt");
+        char[,] sprite = new char[7, 30];
+        string[] lines = File.ReadAllLines("Dog.txt");
 
         private int MaxHealth { get; set; }
         private int MaxMood { get; set; }
@@ -14,7 +14,7 @@ namespace VirtualPet
         public decimal AmbientTemp { get; set; }
 
         
-        public Elephant(PetType petType, int health, int mood, int hunger, decimal ambientTemp)
+        public Dog(PetType petType, int health, int mood, int hunger, decimal ambientTemp)
         {
             MaxHealth = health;
             MaxMood = mood;
@@ -28,7 +28,7 @@ namespace VirtualPet
 
             for (int row = 0; row < sprite.GetLength(0); row++)
             {
-                Console.SetCursorPosition(15, i);
+                Console.SetCursorPosition(12, i);
 
                 for (int column = 0; column < sprite.GetLength(1); column++)
                 {
