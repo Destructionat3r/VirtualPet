@@ -6,7 +6,6 @@ using System.Threading;
 
 namespace VirtualPet
 {
-
     public enum AppState
     {
         Running,
@@ -26,7 +25,7 @@ namespace VirtualPet
 
         public Simulation()
         {
-
+            
         }
 
         public void Run()

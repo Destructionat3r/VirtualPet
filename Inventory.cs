@@ -14,7 +14,6 @@ namespace VirtualPet
         public static int toyPages;
         StatCounter stats = new StatCounter();
         static bool purchased = true;
-        Food foods = new Food();
 
         public void Display(string page, int pageNo)
         {

@@ -10,11 +10,6 @@ namespace VirtualPet
         public int HungerIncrease { get; set; }
         public int Price { get; set; }
 
-        public Food()
-        {
-
-        }
-
         public Food (string name, int hungerIncrease, int price)
         {
             Name = name;
